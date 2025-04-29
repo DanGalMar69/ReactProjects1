@@ -15,7 +15,7 @@ function App() {
       .then((res) => {
         //problema con la peticion y con la respuesta se usa catch junto con throw
         if (!res.ok) throw new Error("Error fetching fact");
-        res.json();
+        return res.json();
       })
       // .then((data) => setFact(data.fact));
       .then((data) => {
@@ -50,14 +50,16 @@ function App() {
     <main className="App">
       <h1>App de gatos</h1>
 
-      {fact && <h4>{fact}</h4>}
-      {imageUrl && (
-        <img
-          // src={`${CAT_PREFIX_IMG_URL}${imageUrl}`} usar cambios externos
-          src={imageUrl}
-          alt={`Imagen extraida usando las tres primeras palabras de ${fact}`}
-        ></img>
-      )}
+      <section>
+        {fact && <h4>{fact}</h4>}
+        {imageUrl && (
+          <img
+            // src={`${CAT_PREFIX_IMG_URL}${imageUrl}`} usar cambios externos
+            src={imageUrl}
+            alt={`Imagen extraida usando las tres primeras palabras de ${fact}`}
+          ></img>
+        )}
+      </section>
     </main>
   );
 }
