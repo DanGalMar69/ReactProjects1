@@ -46,10 +46,31 @@ function App() {
       });
   }, [fact]);
 
+  const handleClic = () => {
+    fetch(CAT_ENDPOINT_RANDOM_FACT)
+      .then((res) => {
+        //problema con la peticion y con la respuesta se usa catch junto con throw
+        if (!res.ok) throw new Error("Error fetching fact");
+        return res.json();
+      })
+      // .then((data) => setFact(data.fact));
+      .then((data) => {
+        const { fact } = data;
+        setFact(fact);
+      })
+      .catch((err) => {
+        // tanto si hay error con la respuesta
+        // como si hay error con la peticion
+        console.err(err);
+      });
+  };
+
   return (
     <main className="App">
       <h1>App de gatos</h1>
-
+      <button type="button" onClick={handleClic}>
+        Nuevo gato
+      </button>
       <section>
         {fact && <h4>{fact}</h4>}
         {imageUrl && (
