@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import { getRandomFact } from "./services/facts.js";
 
 const CAT_ENDPOINT_RANDOM_FACT = "https://catfact.ninja/fact";
 // const CAT_ENDPOINT_IMAGE_URL = `https://cataas.com/cat/says/${threefirstWord}?size=50&color=red&json=true`;
@@ -11,22 +12,25 @@ function App() {
 
   // para recuperar la cita al cargar la pagina
   useEffect(() => {
-    fetch(CAT_ENDPOINT_RANDOM_FACT)
-      .then((res) => {
-        //problema con la peticion y con la respuesta se usa catch junto con throw
-        if (!res.ok) throw new Error("Error fetching fact");
-        return res.json();
-      })
-      // .then((data) => setFact(data.fact));
-      .then((data) => {
-        const { fact } = data;
-        setFact(fact);
-      })
-      .catch((err) => {
-        // tanto si hay error con la respuesta
-        // como si hay error con la peticion
-        console.err(err);
-      });
+    // fetch(CAT_ENDPOINT_RANDOM_FACT)
+    //   .then((res) => {
+    //     //problema con la peticion y con la respuesta se usa catch junto con throw
+    //     if (!res.ok) throw new Error("Error fetching fact");
+    //     return res.json();
+    //   })
+    //   // .then((data) => setFact(data.fact));
+    //   .then((data) => {
+    //     const { fact } = data;
+    //     setFact(fact);
+    //   })
+    //   .catch((err) => {
+    //     // tanto si hay error con la respuesta
+    //     // como si hay error con la peticion
+    //     console.err(err);
+    //   });
+
+    //usando getRandomFact con .then
+    getRandomFact().then((newFact) => setFact(newFact));
   }, []);
 
   //para recueprar la imagen cada vez que tenemos una cita nueva
@@ -46,23 +50,26 @@ function App() {
       });
   }, [fact]);
 
-  const handleClic = () => {
-    fetch(CAT_ENDPOINT_RANDOM_FACT)
-      .then((res) => {
-        //problema con la peticion y con la respuesta se usa catch junto con throw
-        if (!res.ok) throw new Error("Error fetching fact");
-        return res.json();
-      })
-      // .then((data) => setFact(data.fact));
-      .then((data) => {
-        const { fact } = data;
-        setFact(fact);
-      })
-      .catch((err) => {
-        // tanto si hay error con la respuesta
-        // como si hay error con la peticion
-        console.err(err);
-      });
+  const handleClic = async () => {
+    // fetch(CAT_ENDPOINT_RANDOM_FACT)
+    //   .then((res) => {
+    //     //problema con la peticion y con la respuesta se usa catch junto con throw
+    //     if (!res.ok) throw new Error("Error fetching fact");
+    //     return res.json();
+    //   })
+    //   // .then((data) => setFact(data.fact));
+    //   .then((data) => {
+    //     const { fact } = data;
+    //     setFact(fact);
+    //   })
+    //   .catch((err) => {
+    //     // tanto si hay error con la respuesta
+    //     // como si hay error con la peticion
+    //     console.err(err);
+    //   });
+    //usando getRandomFact con async await
+    const newFact = await getRandomFact();
+    setFact(newFact);
   };
 
   return (
