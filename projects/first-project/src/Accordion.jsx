@@ -61,7 +61,9 @@ const SubAccordionItem = ({ title }) => {
 // Ahora recibe un array de sub-ítems en lugar de 'children'
 const AccordionItem = ({ title, subItems, openItem, onToggle }) => {
   const isOpen = openItem === title;
+  console.log("open: ", isOpen);
   const hasSubItem = subItems && subItems.length > 0;
+  console.log("hasSubItem", hasSubItem);
 
   return (
     <div className="accordion-item">
@@ -73,19 +75,21 @@ const AccordionItem = ({ title, subItems, openItem, onToggle }) => {
         >
           {title}
           {hasSubItem && (
-            <span style={{ fontSize: "1.2rem" }}>{isOpen ? "i" : "o"}</span>
+            <span style={{ fontSize: "1.2rem" }}>{isOpen ? "i" : "▼"}</span>
           )}
         </button>
       </h2>
 
-      <div className={`accordion-collapse ${isOpen ? "show" : ""}`}>
-        <div className="accordion-body">
-          {/* Mapeamos el array 'subItems' para renderizar los SubAccordionItem */}
-          {subItems.map((item, index) => (
-            <SubAccordionItem key={index} title={item.title} />
-          ))}
+      {hasSubItem && isOpen && (
+        <div className={`accordion-collapse ${isOpen ? "show" : ""}`}>
+          <div className="accordion-body">
+            {/* Mapeamos el array 'subItems' para renderizar los SubAccordionItem */}
+            {subItems.map((item, index) => (
+              <SubAccordionItem key={index} title={item.title} />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
@@ -114,6 +118,9 @@ export const Accordion = () => {
         { title: "¿Cuánto cuestan las disputas?" },
         { title: "¿Hay una tarifa por usar Apple Pay o Google Pay?" },
       ],
+    },
+    {
+      title: "Cooperacion",
     },
   ];
 
