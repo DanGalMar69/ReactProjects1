@@ -1,118 +1,142 @@
-/* Estilos generales del acordeón */
+/* Estilos generales para el contenedor del acordeón */
 .accordion {
-  width: 100%;
-  max-width: 700px;
-  margin: 0 auto;
-  border: 1px solid #ccc;
-  border-radius: 0.25rem;
+  border: 10px solid #ddd;
+  border-radius: 2px;
   overflow: hidden;
+  width: 100%;
+  max-width: 254px; /* Ancho máximo para mejor legibilidad */
+  margin: 20px auto; /* Centrar el acordeón */
+  font-family: "Inter", sans-serif; /* Fuente consistente */
 }
 
+/* Estilos para cada ítem del acordeón (primer nivel) */
 .accordion-item {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #eee;
 }
 
 .accordion-item:last-child {
-  border-bottom: none;
+  border-bottom: none; /* Eliminar el borde inferior del último ítem */
 }
 
-/* Estilos de los botones del acordeón (primer y segundo nivel) */
-.accordion-button,
-.sub-accordion-button {
+/* Estilos para el encabezado del ítem del acordeón */
+.accordion-header {
+  margin: 0;
+}
+
+/* Estilos para el botón del acordeón (primer nivel) */
+.accordion-button {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 1rem;
+  padding: 15px 20px;
+  background-color: #f8f9fa;
+  color: #333;
   font-size: 1rem;
-  color: #000;
-  text-align: left;
-  background-color: #fff;
+  font-weight: 600;
   border: none;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  text-align: left;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 2px; /* Bordes redondeados */
 }
 
-/* Pseudo-elemento para el icono de la flecha */
-.accordion-button::after,
-.sub-accordion-button::after {
-  content: "▼";
-  font-size: 0.8rem;
-  margin-left: auto;
-  transition: transform 0.2s ease;
-}
-
-/* Rotar la flecha cuando el botón está abierto */
-.accordion-button:not(.collapsed)::after,
-.sub-accordion-button:not(.collapsed)::after {
-  transform: rotate(180deg);
-}
-
-.accordion-button.collapsed,
-.sub-accordion-button.collapsed {
-  color: #3b74ad;
-}
-
-.accordion-button:hover,
-.sub-accordion-button:hover {
-  background-color: #bb831c;
-}
-
-/* Estilos del contenido que se colapsa */
-.accordion-collapse {
-  overflow: scroll;
-  max-height: 0;
-  transition: max-height 0.3s ease-in-out;
-}
-
-.accordion-collapse.show {
-  max-height: 500px; /* Un valor lo suficientemente grande */
-}
-
-/* Estilos del cuerpo del acordeón */
-.accordion-body,
-.sub-accordion-body {
-  padding: 1rem 1.25rem;
-  border-top: 1px solid #ccc;
-  background-color: #fefefe;
-}
-
-/* Estilos específicos para el sub-acordeón (segundo nivel) */
-.sub-accordion-item {
-  border-bottom: 1px solid #e9ecef;
-}
-
-.sub-accordion-item:last-child {
-  border-bottom: none;
-}
-
-.sub-accordion-button {
-  padding: 0.75rem 1rem;
-  font-size: 0.9rem;
-  background-color: #f8f9fa;
-}
-
-.sub-accordion-button:hover {
+.accordion-button:hover {
   background-color: #e9ecef;
 }
 
-.sub-accordion-body {
-  padding-left: 2rem;
-  background-color: #fefefe;
-}
-
-.sub-accordion-body pre {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  font-size: 0.8rem;
-  color: #333;
+/* Estilos para el botón cuando está colapsado */
+.accordion-button.collapsed {
   background-color: #fff;
-  padding: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  color: #555;
 }
 
-/* Estilo para mensajes de error */
-.error {
-  color: #dc3545;
-  font-weight: bold;
+/* Estilos para el contenido colapsable del acordeón */
+.accordion-collapse {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out; /* Transición suave para el colapso */
+}
+
+/* Estilos para el contenido cuando está expandido */
+.accordion-collapse.show {
+  max-height: 500px; /* Suficiente altura para mostrar el contenido. Ajustar si es necesario. */
+  /* Considerar usar 'height: auto;' si el contenido es variable y no hay problemas de rendimiento con la transición. */
+}
+
+/* Estilos para el cuerpo del acordeón (contenido) */
+.accordion-body {
+  padding: 15px 20px;
+  background-color: #fefefe;
+  border-top: 1px solid #eee;
+}
+
+/* Estilos para los sub-ítems del acordeón (segundo nivel) */
+.sub-accordion-item {
+  margin-top: 10px;
+  border: 1px solid #f0f0f0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.sub-accordion-item:first-child {
+  margin-top: 0;
+}
+
+/* Estilos para el botón del sub-acordeón */
+.sub-accordion-button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 15px;
+  background-color: #f1f3f5;
+  color: #444;
+  font-size: 0.95em;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.3s ease;
+  border-radius: 6px; /* Bordes redondeados */
+}
+
+.sub-accordion-button:hover {
+  background-color: #e2e6ea;
+}
+
+/* Estilos para el botón del sub-acordeón cuando está colapsado */
+.sub-accordion-button.collapsed {
+  background-color: #f9f9f9;
+  color: #666;
+}
+
+/* Estilos para el contenido colapsable del sub-acordeón */
+.sub-accordion-collapse {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+/* Estilos para el contenido del sub-acordeón cuando está expandido */
+.sub-accordion-collapse.show {
+  max-height: 200px; /* Ajustar según el contenido esperado */
+}
+
+/* Estilos para el cuerpo del sub-acordeón (contenido) */
+.sub-accordion-body {
+  padding: 10px 15px;
+  background-color: #ffffff;
+  border-top: 1px solid #f0f0f0;
+  color: #777;
+}
+
+/* Estilos para mensajes de carga y error */
+.sub-accordion-body p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.sub-accordion-body .error {
+  color: #dc3545; /* Color rojo para errores */
 }
