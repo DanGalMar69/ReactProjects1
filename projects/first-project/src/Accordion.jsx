@@ -61,6 +61,7 @@ const SubAccordionItem = ({ title }) => {
 // Ahora recibe un array de sub-ítems en lugar de 'children'
 const AccordionItem = ({ title, subItems, openItem, onToggle }) => {
   const isOpen = openItem === title;
+  const hasSubItem = subItems && subItems.length > 0;
 
   return (
     <div className="accordion-item">
@@ -71,8 +72,12 @@ const AccordionItem = ({ title, subItems, openItem, onToggle }) => {
           aria-expanded={isOpen}
         >
           {title}
+          {hasSubItem && (
+            <span style={{ fontSize: "1.2rem" }}>{isOpen ? "i" : "o"}</span>
+          )}
         </button>
       </h2>
+
       <div className={`accordion-collapse ${isOpen ? "show" : ""}`}>
         <div className="accordion-body">
           {/* Mapeamos el array 'subItems' para renderizar los SubAccordionItem */}
