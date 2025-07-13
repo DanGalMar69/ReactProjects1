@@ -1,0 +1,118 @@
+/* Estilos generales del acordeón */
+.accordion {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #ccc;
+}
+
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+/* Estilos de los botones del acordeón (primer y segundo nivel) */
+.accordion-button,
+.sub-accordion-button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  color: #000;
+  text-align: left;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Pseudo-elemento para el icono de la flecha */
+.accordion-button::after,
+.sub-accordion-button::after {
+  content: "▼";
+  font-size: 0.8rem;
+  margin-left: auto;
+  transition: transform 0.2s ease;
+}
+
+/* Rotar la flecha cuando el botón está abierto */
+.accordion-button:not(.collapsed)::after,
+.sub-accordion-button:not(.collapsed)::after {
+  transform: rotate(180deg);
+}
+
+.accordion-button.collapsed,
+.sub-accordion-button.collapsed {
+  color: #3b74ad;
+}
+
+.accordion-button:hover,
+.sub-accordion-button:hover {
+  background-color: #bb831c;
+}
+
+/* Estilos del contenido que se colapsa */
+.accordion-collapse {
+  overflow: scroll;
+  max-height: 0;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.accordion-collapse.show {
+  max-height: 500px; /* Un valor lo suficientemente grande */
+}
+
+/* Estilos del cuerpo del acordeón */
+.accordion-body,
+.sub-accordion-body {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid #ccc;
+  background-color: #fefefe;
+}
+
+/* Estilos específicos para el sub-acordeón (segundo nivel) */
+.sub-accordion-item {
+  border-bottom: 1px solid #e9ecef;
+}
+
+.sub-accordion-item:last-child {
+  border-bottom: none;
+}
+
+.sub-accordion-button {
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  background-color: #f8f9fa;
+}
+
+.sub-accordion-button:hover {
+  background-color: #e9ecef;
+}
+
+.sub-accordion-body {
+  padding-left: 2rem;
+  background-color: #fefefe;
+}
+
+.sub-accordion-body pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 0.8rem;
+  color: #333;
+  background-color: #fff;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Estilo para mensajes de error */
+.error {
+  color: #dc3545;
+  font-weight: bold;
+}
